@@ -5,6 +5,9 @@
     box-sizing: border-box;
     font-family: "Noto Sans Georgian", sans-serif;
 }
+body {
+    min-width: 980px;
+}
 a {
     text-decoration: none;
 }
@@ -332,4 +335,7 @@ footer button:hover {
 }
 .hidden {
     display: none;
+}
+@media screen and (max-width: 656px){
+
 }
