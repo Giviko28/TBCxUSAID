@@ -184,10 +184,10 @@ nav {
 }
 .slide {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 7.75rem;
-    transition: opacity 0.5s ease;
+    position:absolute;
+    transition: all 1s;
 }
 .fade-in {
     opacity: 1;
@@ -231,7 +231,7 @@ nav {
 .accordion {
     background-color: var(--third-color);
     color: #F4F4F4;
-    padding: 7rem 0 4rem 0;
+    padding: 6rem 3rem 4rem 4rem;
 }
 .accordion .wrapper {
     padding: 0 2rem;
@@ -260,6 +260,10 @@ nav {
 .accordion-item {
     padding: 32px 0;
     border-bottom: 1px solid #FFFFFF30;
+    cursor:pointer;
+    max-height: 6rem;
+    overflow: hidden;
+    transition: all 0.3s;
 }
 .accordion-item--header {
     display: flex;
@@ -269,14 +273,25 @@ nav {
     font-size: 18px;
     font-weight: 400;
 }
+.accordion-item--active {
+    transform: rotate(180deg);
+}
 .accordion-item--body {
     display: flex;
     flex-direction: column;
-    padding: 2.25rem 0.25rem;
+    padding: 2rem 0.25rem 0.25rem;
     gap: 2.5rem;
     font-size: 14px;
+    line-height: 2;
+}
+.accordion-open {
+    max-height: 50rem;
 }
 .accordion-item--body div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0 1.25rem;
 }
 footer {
     background-color: #1A1E1F;
@@ -314,4 +329,7 @@ footer button:hover {
     position: absolute;
     top: 0;
     right: 0;
+}
+.hidden {
+    display: none;
 }
