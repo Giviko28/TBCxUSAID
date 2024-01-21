@@ -10,22 +10,15 @@ let lastKnownScrollPosition = 0;
 let isClicked = false;
 
 menu.addEventListener("click", () => {
-  spanParent.classList.toggle("menu__span-parent--active");
-  menuTop.classList.toggle("menu__top--animated");
-  menuMiddle.classList.toggle("menu__middle--animated");
-  menuBottom.classList.toggle("menu__bottom--animated");
-  menuContainer.classList.toggle("menu-container-open");
-  menuContainerContent.classList.toggle("menu-container-content-open");
-
-  isClicked = !isClicked;
-  isClicked
-    ? (document.body.style.overflow = "hidden")
-    : (document.body.style.overflow = "");
-  !isClicked && window.scrollY !== 0 ? hideHeader() : "";
+  toggleMenu();
 });
 
 window.addEventListener("scroll", updateHeaderClass);
 window.addEventListener("scroll", updateHeaderVisibility);
+menuContainer.addEventListener("click", toggleMenu);
+menuContainerContent.addEventListener("click", (event) =>
+  event.stopPropagation(),
+);
 
 function updateHeaderClass() {
   const header = document.querySelector("header");
@@ -41,7 +34,7 @@ function updateHeaderClass() {
 }
 
 function updateHeaderVisibility() {
-  if (window.innerWidth > 320) return;
+  if (window.innerWidth > 1600) return;
   const currentScrollPosition = window.scrollY;
 
   currentScrollPosition > lastKnownScrollPosition ? hideHeader() : showHeader();
@@ -57,4 +50,19 @@ function hideHeader() {
 function showHeader() {
   header.classList.remove("header-hidden");
   menu.classList.remove("header-hidden");
+}
+
+function toggleMenu() {
+  spanParent.classList.toggle("menu__span-parent--active");
+  menuTop.classList.toggle("menu__top--animated");
+  menuMiddle.classList.toggle("menu__middle--animated");
+  menuBottom.classList.toggle("menu__bottom--animated");
+  menuContainer.classList.toggle("menu-container-open");
+  menuContainerContent.classList.toggle("menu-container-content-open");
+
+  isClicked = !isClicked;
+  isClicked
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "");
+  !isClicked && window.scrollY !== 0 ? hideHeader() : "";
 }
