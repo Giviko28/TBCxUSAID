@@ -1,0 +1,54 @@
+.menu {
+    position: relative;
+    width: 32px;
+    height: 28px;
+    background: transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.menu_wrapper {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+.menu__span-parent {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 21px;
+    justify-content: space-between;
+    transition: transform .33s ease-out;
+    width: 26px;
+}
+.menu__span-parent--active {
+    transform: rotate(-45deg);
+}
+.menu span {
+    height: 3px;
+    background: #dbdbdb;
+    border-radius: 1.5px;
+    width: 100%;
+}
+.menu .menu__half {
+    width: 50%;
+}
+.menu .menu__top {
+    align-self: flex-start;
+    transform-origin: right;
+    transition: transform .33s cubic-bezier(.54,-.81,.57,.57);
+}
+.menu .menu__top--animated {
+    transform: rotate(-90deg) translateX(4px);
+}
+.menu .menu__bottom--animated {
+    transform: rotate(-90deg) translateX(-4px);
+}
+.menu .menu__bottom {
+    align-self: flex-end;
+    transform-origin: left;
+    transition: transform .33s cubic-bezier(.54,-.81,.57,.57);
+}

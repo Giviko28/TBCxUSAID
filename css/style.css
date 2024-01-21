@@ -24,9 +24,24 @@ a {
 .active {
     color: var(--blue);
 }
+.menu-container {
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+.menu-container-open {
+    opacity: 1;
+    display: flex;
+}
+
 section, footer {
     display: flex;
     justify-content: center;
+}
+.header-wrapper {
+    background-color: white;
+    width: 980px;
+    height: 84px;
 }
 header {
     background-color: var(--primary-color);
@@ -34,6 +49,15 @@ header {
     padding: 1.375rem;
     display: flex;
     justify-content: center;
+    position: fixed;
+    width: 100%;
+    transition: all 0.3s;
+}
+.header-hidden {
+    transform: translateY(-200%);
+}
+.header-transparent {
+    background-color: #222222f2;
 }
 header > .wrapper {
     display: flex;
@@ -333,9 +357,191 @@ footer button:hover {
     top: 0;
     right: 0;
 }
+.footer-SM {
+    display: none;
+}
 .hidden {
     display: none;
 }
-@media screen and (max-width: 656px){
 
+@media screen and (max-width: 320px) {
+
+    .wrapper {
+        min-width: 280px;
+        width: 280px;
+    }
+    html, body {
+        width: 320px;
+        max-width: 320px;
+        min-width: unset;
+    }
+    .menu {
+        position: fixed;
+        z-index: 555;
+        right: 16px;
+        top: 20px;
+        display: flex;
+        transition: 0.3s;
+    }
+    .menu__span-parent {
+        z-index: 20;
+    }
+    .menu-container {
+        background-color: #222222f2;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        right: 0;
+        z-index: 10;
+    }
+    .menu-container-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2rem;
+        position: absolute;
+        height: 100%;
+        width: 0;
+        overflow: hidden;
+        background-color: #1a1a1a;
+        right: 0;
+        transition: width 0.5s;
+        padding: 6.25rem 1rem;
+        white-space: nowrap;
+    }
+    .menu-container-content-open {
+        width: 62%;
+    }
+    .menu-container-content a {
+        color: white;
+        font-size: 14px;
+    }
+    header {
+        padding: 0;
+    }
+    .header-wrapper {
+        width: 320px;
+        height: 69px;
+    }
+    header .wrapper {
+        padding: 1.25rem 0;
+    }
+    header .wrapper img {
+        width: 130px;
+        height: 29px;
+    }
+    header .wrapper nav {
+        display: none;
+    }
+    .banner {
+        height: 217px;
+    }
+    .banner .wrapper {
+        line-height: 0.75em;
+    }
+    .banner-title {
+        font-size: 24px;
+    }
+    .banner-description {
+        font-size: 22px;
+    }
+    .description .wrapper {
+        margin: 2rem 0 3rem;
+    }
+    .description .wrapper h1 {
+        font-size: 16px;
+    }
+    .description .wrapper a {
+        font-size: 16px;
+    }
+    .courses-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .courses-grid-card {
+        width: 280px;
+        height: 289px;
+    }
+    .courses-grid-card > img {
+        height: 140px;
+    }
+    .carousel {
+        justify-content: space-between;
+        height: 430px;
+    }
+    .carousel .wrapper h1 {
+        font-size: 18px;
+        white-space: nowrap;
+    }
+    .slides-wrapper {
+        height: 300px;
+        margin: 0;
+    }
+    .slide {
+        height: 100%;
+        width: 280px;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .carousel-dots {
+        margin: 0 0 1rem 0;
+    }
+    .prev-button, .next-button {
+        display: none;
+    }
+    .accordion {
+        padding: 0;
+    }
+    .accordion .wrapper {
+        padding: 2.75rem 0.5rem;
+    }
+    .accordion-header > h2 {
+        font-size: 20px;
+    }
+    .accordion-header > a {
+        display: none;
+    }
+    .accordion-item--header__title {
+        font-size: 16px;
+    }
+    .accordion-open {
+        max-height: 120rem;
+    }
+    footer {
+        display: none;
+        padding: unset;
+    }
+    .footer-SM {
+        display: block;
+        padding: 2.5rem;
+    }
+    .footer-SM .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .footer-SM-contacts {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .footer-SM-contacts button {
+        position: relative;
+        padding: 0.5rem 0.75rem;
+        font-size: 14px;
+    }
+    .footer-SM-socials {
+        display: flex;
+        gap: 1rem;
+        margin-right: 2rem;
+    }
+    .footer-SM-socials img {
+        height: 35px;
+        width: 35px;
+    }
+    .footer-SM-copyright {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
