@@ -6,6 +6,7 @@
     font-family: "Noto Sans Georgian", sans-serif;
 }
 body {
+    position: relative;
     min-width: 980px;
 }
 a {
@@ -33,7 +34,9 @@ a {
     opacity: 1;
     display: flex;
 }
-
+.menu-container-content {
+    display: none;
+}
 section, footer {
     display: flex;
     justify-content: center;
@@ -399,7 +402,7 @@ footer button:hover {
         flex-direction: column;
         align-items: flex-end;
         gap: 2rem;
-        position: absolute;
+        position: fixed;
         height: 100%;
         width: 0;
         overflow: hidden;

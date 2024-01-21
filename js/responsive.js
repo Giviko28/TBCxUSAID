@@ -1,17 +1,27 @@
+const header = document.querySelector("header");
 const menu = document.querySelector(".menu");
 const menuContainer = document.querySelector(".menu-container");
 const menuContainerContent = document.querySelector(".menu-container-content");
 const spanParent = document.querySelector(".menu__span-parent");
 const menuTop = document.querySelector(".menu__top");
+const menuMiddle = document.querySelector(".menu__full");
 const menuBottom = document.querySelector(".menu__bottom");
 let lastKnownScrollPosition = 0;
+let isClicked = false;
 
 menu.addEventListener("click", () => {
   spanParent.classList.toggle("menu__span-parent--active");
   menuTop.classList.toggle("menu__top--animated");
+  menuMiddle.classList.toggle("menu__middle--animated");
   menuBottom.classList.toggle("menu__bottom--animated");
   menuContainer.classList.toggle("menu-container-open");
   menuContainerContent.classList.toggle("menu-container-content-open");
+
+  isClicked = !isClicked;
+  isClicked
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "");
+  !isClicked ? hideHeader() : "";
 });
 
 window.addEventListener("scroll", updateHeaderClass);
@@ -32,27 +42,19 @@ function updateHeaderClass() {
 
 function updateHeaderVisibility() {
   if (window.innerWidth > 320) return;
-  const header = document.querySelector("header");
-  const menu = document.querySelector(".menu");
   const currentScrollPosition = window.scrollY;
 
-  if (currentScrollPosition > lastKnownScrollPosition) {
-    header.classList.add("header-hidden");
-    menu.classList.add("header-hidden");
-  } else {
-    header.classList.remove("header-hidden");
-    menu.classList.remove("header-hidden");
-  }
+  currentScrollPosition > lastKnownScrollPosition ? hideHeader() : showHeader();
 
   lastKnownScrollPosition = currentScrollPosition;
 }
 
-function toggleMenu() {}
+function hideHeader() {
+  header.classList.add("header-hidden");
+  menu.classList.add("header-hidden");
+}
 
-function disableScroll() {
-  let scrollPosition = window.scrollY;
-
-  // Set the body to fixed position to prevent scrolling
-  document.body.style.position = "fixed";
-  document.body.style.top = `-${scrollPosition}px`;
+function showHeader() {
+  header.classList.remove("header-hidden");
+  menu.classList.remove("header-hidden");
 }
