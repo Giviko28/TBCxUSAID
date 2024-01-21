@@ -23,7 +23,7 @@ a {
     min-width: 980px;
 }
 .active {
-    color: var(--blue);
+    color: var(--blue) !important;
 }
 .menu-container {
     opacity: 0;
@@ -55,6 +55,7 @@ header {
     position: fixed;
     width: 100%;
     transition: all 0.3s;
+    z-index: 50;
 }
 .header-hidden {
     transform: translateY(-200%);
@@ -198,6 +199,7 @@ nav {
     flex-direction: column;
     align-items: center;
     background-color: var(--secondary-color);
+    overflow: hidden;
 }
 .carousel .wrapper h1 {
     color:white;
@@ -213,14 +215,16 @@ nav {
     height: 95px;
 }
 .slide {
+    overflow: hidden;
     display: flex;
     align-items: center;
     gap: 7.75rem;
     position:absolute;
     transition: all 1s;
+    opacity: 0;
 }
 .fade-in {
-    opacity: 1;
+    opacity: 1 !important;
 }
 .prev-button, .next-button {
     width: 18px;
@@ -391,11 +395,13 @@ footer button:hover {
     }
     .menu-container {
         background-color: #222222f2;
-        height: 100%;
         width: 100%;
         position: fixed;
         right: 0;
-        z-index: 10;
+        z-index: 100;
+    }
+    .menu-container-open {
+        height: 100%;
     }
     .menu-container-content {
         display: flex;
@@ -456,6 +462,20 @@ footer button:hover {
     }
     .description .wrapper a {
         font-size: 16px;
+    }
+    .slide-third {
+        top: unset !important;
+        left: unset !important;
+        transform: translateX(150%) !important;
+    }
+    .slide-left {
+        transform: translateX(-150%) !important;
+    }
+    .slide-right {
+        transform: translateX(150%) !important;
+    }
+    .fade-in {
+        transform: translateX(0) !important;
     }
     .courses-grid {
         grid-template-columns: repeat(1, 1fr);

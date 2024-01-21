@@ -21,7 +21,7 @@ menu.addEventListener("click", () => {
   isClicked
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "");
-  !isClicked ? hideHeader() : "";
+  !isClicked && window.scrollY !== 0 ? hideHeader() : "";
 });
 
 window.addEventListener("scroll", updateHeaderClass);
