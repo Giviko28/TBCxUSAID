@@ -1,5 +1,9 @@
 let slide = 0;
 let intervalID = 0;
+let isDragging = false;
+let allowSlideChange = true;
+const dragInterval = 1000;
+let startX, startY, offsetX, offsetY;
 const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".carousel-dot");
 const prevButton = document.querySelector(".prev-button");
@@ -8,18 +12,54 @@ const nextButton = document.querySelector(".next-button");
 prevButton.addEventListener("click", () => {
   handleDecrement();
 });
-
 nextButton.addEventListener("click", () => {
   handleIncrement();
 });
+slides.forEach((slide) => slide.addEventListener("touchstart", startDrag));
+document.body.addEventListener("touchmove", drag);
+document.body.addEventListener("touchend", stopDrag);
 
 dots.forEach((dot, index) =>
   dot.addEventListener("click", () => {
+    if (!allowSlideChange) return;
     showSlide(index);
   }),
 );
 
 interval();
+
+function startDrag(e) {
+  isDragging = true;
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+}
+function drag(e) {
+  if (!isDragging || !allowSlideChange) return;
+
+  offsetX = e.touches[0].clientX - startX;
+  offsetY = e.touches[0].clientY - startY;
+
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+
+  if (offsetX > 10) {
+    handleDecrement();
+  }
+
+  if (offsetX < -10) {
+    handleIncrement();
+  }
+}
+function stopDrag() {
+  isDragging = false;
+}
+
+function resetSlideChangeFlag() {
+  allowSlideChange = false;
+  setTimeout(() => {
+    allowSlideChange = true;
+  }, dragInterval);
+}
 
 function interval() {
   intervalID = setInterval(() => {
@@ -57,4 +97,5 @@ function showSlide(slide) {
   dots[slide].classList.add("carousel-dot--active");
 
   interval();
+  resetSlideChangeFlag();
 }

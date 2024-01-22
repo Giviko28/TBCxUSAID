@@ -11,6 +11,7 @@ body {
 }
 a {
     text-decoration: none;
+    color: white;
 }
 :root {
     --primary-color: #1a1e1f;
@@ -21,9 +22,6 @@ a {
 .wrapper {
     width: 980px;
     min-width: 980px;
-}
-.active {
-    color: var(--blue) !important;
 }
 .menu-container {
     opacity: 0;
@@ -41,12 +39,12 @@ section, footer {
     display: flex;
     justify-content: center;
 }
-.header-wrapper {
+.header--overlay {
     background-color: white;
     width: 980px;
     height: 84px;
 }
-header {
+.header {
     background-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     padding: 1.375rem;
@@ -57,26 +55,18 @@ header {
     transition: all 0.3s;
     z-index: 50;
 }
-.header-hidden {
-    transform: translateY(-200%);
-}
-.header-transparent {
-    background-color: #222222f2;
-}
-header > .wrapper {
+.header__wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-header a {
-    color: white;
-    transition: color 0.4s, opacity 0.4s;
+.header--hidden {
+    transform: translateY(-200%);
 }
-header a:hover {
-    color: var(--blue);
-    opacity: 1;
+.header--transparent {
+    background-color: #222222f2;
 }
-nav {
+.header__nav {
     display: flex;
     gap: 3.175rem;
     font-weight: 500;
@@ -85,6 +75,16 @@ nav {
     padding:0 1rem;
     white-space: nowrap;
 }
+.header__nav__anchor {
+    transition: color 0.4s, opacity 0.4s;
+}
+.header__nav__anchor:hover {
+    color: var(--blue);
+    opacity: 1;
+}
+.header__nav__anchor--active {
+    color: var(--blue) !important;
+}
 .banner {
     height: 352px;
     background-size: cover;
@@ -92,20 +92,20 @@ nav {
     background-image: url("https://static.wixstatic.com/media/93e8a3_9fa23196ddf6427a9da574e2b31a13d2~mv2.jpg/v1/fill/w_1920,h_400,al_c,q_85,enc_auto/93e8a3_9fa23196ddf6427a9da574e2b31a13d2~mv2.jpg");
     align-items: center;
 }
-.banner .wrapper {
+.banner__wrapper {
     font-size: 42px;
     line-height: 1.6em;
     color: white;
     text-align: left;
     padding-bottom: 1.875rem;
 }
-.banner-description, .banner-title {
+.banner__description, .banner__title {
     font-weight: 900;
 }
-.banner-title {
+.banner__title {
     font-size: 44px;
 }
-.banner-description {
+.banner__description {
     font-size: 34px;
 }
 .description {
@@ -372,7 +372,6 @@ footer button:hover {
 }
 
 @media screen and (max-width: 320px) {
-
     .wrapper {
         min-width: 280px;
         width: 280px;
@@ -382,7 +381,7 @@ footer button:hover {
         max-width: 320px;
         min-width: unset;
     }
-    .menu {
+    .menu-button {
         position: fixed;
         z-index: 555;
         right: 16px;
@@ -390,7 +389,7 @@ footer button:hover {
         display: flex;
         transition: 0.3s;
     }
-    .menu__span-parent {
+    .menu-button__span-parent {
         z-index: 20;
     }
     .menu-container {
@@ -425,21 +424,21 @@ footer button:hover {
         color: white;
         font-size: 14px;
     }
-    header {
+    .header {
         padding: 0;
     }
-    .header-wrapper {
+    .header--overlay {
         width: 320px;
         height: 69px;
     }
-    header .wrapper {
+    .header__wrapper {
         padding: 1.25rem 0;
     }
-    header .wrapper img {
+    .header__image {
         width: 130px;
         height: 29px;
     }
-    header .wrapper nav {
+    .header__nav__anchor {
         display: none;
     }
     .banner {
@@ -448,10 +447,10 @@ footer button:hover {
     .banner .wrapper {
         line-height: 0.75em;
     }
-    .banner-title {
+    .banner__title {
         font-size: 24px;
     }
-    .banner-description {
+    .banner__description {
         font-size: 22px;
     }
     .description .wrapper {

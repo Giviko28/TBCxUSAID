@@ -1,4 +1,4 @@
-.menu {
+.menu-button {
     position: relative;
     width: 32px;
     height: 28px;
@@ -15,7 +15,7 @@
     height: 100%;
     width: 100%;
 }
-.menu__span-parent {
+.menu-button__span-parent {
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -33,23 +33,23 @@
     border-radius: 1.5px;
     width: 100%;
 }
-.menu .menu__half {
+.menu-button .menu__half {
     width: 50%;
 }
-.menu .menu__top {
+.menu-button .menu__top {
     align-self: flex-start;
     transform-origin: right;
     transition: transform .33s cubic-bezier(.54,-.81,.57,.57);
 }
-.menu .menu__top--animated {
+.menu-button .menu__top--animated {
     transform: rotate(-90deg) translateX(4px);
     background: #767676;
 }
-.menu .menu__bottom--animated {
+.menu-button .menu__bottom--animated {
     transform: rotate(-90deg) translateX(-4px);
     background: #767676;
 }
-.menu .menu__bottom {
+.menu-button .menu__bottom {
     align-self: flex-end;
     transform-origin: left;
     transition: transform .33s cubic-bezier(.54,-.81,.57,.57);
