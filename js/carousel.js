@@ -5,9 +5,9 @@ let allowSlideChange = true;
 const dragInterval = 1000;
 let startX, startY, offsetX, offsetY;
 const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".carousel-dot");
-const prevButton = document.querySelector(".prev-button");
-const nextButton = document.querySelector(".next-button");
+const dots = document.querySelectorAll(".slider__dot");
+const prevButton = document.querySelector(".slides__prev-button");
+const nextButton = document.querySelector(".slides__next-button");
 
 prevButton.addEventListener("click", () => {
   handleDecrement();
@@ -81,20 +81,20 @@ function showSlide(slide) {
   clearInterval(intervalID);
 
   if (slide === 0) {
-    slides[1].classList.remove("slide-left");
-    slides[1].classList.add("slide-right");
+    slides[1].classList.remove("slide--left");
+    slides[1].classList.add("slide--right");
   }
   if (slide === 2) {
-    slides[1].classList.remove("slide-right");
-    slides[1].classList.add("slide-left");
+    slides[1].classList.remove("slide--right");
+    slides[1].classList.add("slide--left");
   }
 
   for (let i = 0; i < slides.length; i++) {
-    slides[i].classList.remove("fade-in");
-    dots[i].classList.remove("carousel-dot--active");
+    slides[i].classList.remove("slide--fade-in");
+    dots[i].classList.remove("slider__dot--active");
   }
-  slides[slide].classList.add("fade-in");
-  dots[slide].classList.add("carousel-dot--active");
+  slides[slide].classList.add("slide--fade-in");
+  dots[slide].classList.add("slider__dot--active");
 
   interval();
   resetSlideChangeFlag();
