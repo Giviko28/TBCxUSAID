@@ -1,7 +1,7 @@
 const header = document.querySelector("header");
 const menu = document.querySelector(".menu-button");
-const menuContainer = document.querySelector(".menu-container");
-const menuContainerContent = document.querySelector(".menu-container-content");
+const menuContainer = document.querySelector(".menu-overlay");
+const menuContainerContent = document.querySelector(".menu");
 const spanParent = document.querySelector(".menu-button__span-parent");
 const menuTop = document.querySelector(".menu__top");
 const menuMiddle = document.querySelector(".menu__full");
@@ -9,6 +9,9 @@ const menuBottom = document.querySelector(".menu__bottom");
 let lastKnownScrollPosition = 0;
 let isClicked = false;
 
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
 menu.addEventListener("click", () => {
   toggleMenu();
 });

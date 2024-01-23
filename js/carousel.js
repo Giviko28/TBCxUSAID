@@ -5,6 +5,8 @@ let allowSlideChange = true;
 const dragInterval = 1000;
 let startX, startY, offsetX, offsetY;
 const slides = document.querySelectorAll(".slide");
+const slidesOverlay = document.querySelector(".slides-overlay");
+const dotsContainer = document.querySelector(".slider__dots");
 const dots = document.querySelectorAll(".slider__dot");
 const prevButton = document.querySelector(".slides__prev-button");
 const nextButton = document.querySelector(".slides__next-button");
@@ -15,9 +17,21 @@ prevButton.addEventListener("click", () => {
 nextButton.addEventListener("click", () => {
   handleIncrement();
 });
-slides.forEach((slide) => slide.addEventListener("touchstart", startDrag));
+
+// Drag to slide functions for mobile
+slides.forEach((slide) => {
+  slide.addEventListener("touchstart", startDrag);
+});
 document.body.addEventListener("touchmove", drag);
 document.body.addEventListener("touchend", stopDrag);
+// END
+
+// Freeze slider on hover
+slidesOverlay.addEventListener("mouseenter", () => clearInterval(intervalID));
+slidesOverlay.addEventListener("mouseleave", () => interval());
+dotsContainer.addEventListener("mouseenter", () => clearInterval(intervalID));
+dotsContainer.addEventListener("mouseleave", () => interval());
+// END
 
 dots.forEach((dot, index) =>
   dot.addEventListener("click", () => {
