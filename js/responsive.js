@@ -63,10 +63,15 @@ function toggleMenu() {
   menuContainerContent.classList.toggle("menu-container-content-open");
 
   isClicked = !isClicked;
-  isClicked
-    ? (document.body.style.overflow = "hidden")
-    : (document.body.style.overflow = "");
-  !isClicked && window.scrollY !== 0 ? hideHeader() : "";
+  if (isClicked) {
+    document.body.style.overflow = "hidden";
+    menuContainer.style.overflow = "hidden";
+  }
+  if (!isClicked) {
+    window.scrollY !== 0 ? hideHeader() : "";
+    document.body.style.overflow = "";
+    menuContainer.style.overflow = "";
+  }
 }
 // Determines if the loaded user is a mobile or desktop
 // let viewportMeta = document.createElement("meta");

@@ -1,7 +1,9 @@
 let slide = 0;
-let intervalID = 0;
+let previousSlide = 0;
+let intervalID;
 let isDragging = false;
 let allowSlideChange = true;
+let freezeOnHover = false;
 const dragInterval = 1000;
 let startX, startY, offsetX, offsetY;
 const slides = document.querySelectorAll(".slide");
@@ -17,6 +19,18 @@ prevButton.addEventListener("click", () => {
 nextButton.addEventListener("click", () => {
   handleIncrement();
 });
+dots.forEach((dot, index) =>
+  dot.addEventListener("click", () => {
+    if (!allowSlideChange) return;
+    previousSlide = slide;
+    slide = index;
+    if (previousSlide === slide) return;
+    previousSlide > slide
+      ? animateRight(previousSlide, slide)
+      : animateLeft(previousSlide, slide);
+    showSlide(index);
+  }),
+);
 
 // Drag to slide functions for mobile
 slides.forEach((slide) => {
@@ -27,18 +41,11 @@ document.body.addEventListener("touchend", stopDrag);
 // END
 
 // Freeze slider on hover
-slidesOverlay.addEventListener("mouseenter", () => clearInterval(intervalID));
-slidesOverlay.addEventListener("mouseleave", () => interval());
-dotsContainer.addEventListener("mouseenter", () => clearInterval(intervalID));
-dotsContainer.addEventListener("mouseleave", () => interval());
+slidesOverlay.addEventListener("mouseenter", () => (freezeOnHover = true));
+slidesOverlay.addEventListener("mouseleave", () => (freezeOnHover = false));
+dotsContainer.addEventListener("mouseenter", () => (freezeOnHover = true));
+dotsContainer.addEventListener("mouseleave", () => (freezeOnHover = false));
 // END
-
-dots.forEach((dot, index) =>
-  dot.addEventListener("click", () => {
-    if (!allowSlideChange) return;
-    showSlide(index);
-  }),
-);
 
 interval();
 
@@ -77,39 +84,66 @@ function resetSlideChangeFlag() {
 
 function interval() {
   intervalID = setInterval(() => {
+    if (freezeOnHover) return;
     handleIncrement();
   }, 2500);
 }
 
 function handleIncrement() {
+  if (!allowSlideChange) return;
+
+  previousSlide = slide;
+
   slide >= slides.length - 1 ? (slide = 0) : slide++;
+
+  animateLeft(previousSlide, slide);
+
   showSlide(slide);
 }
 
 function handleDecrement() {
+  if (!allowSlideChange) return;
+
+  previousSlide = slide;
+
   slide <= 0 ? (slide = slides.length - 1) : slide--;
+
+  animateRight(previousSlide, slide);
+
   showSlide(slide);
 }
 
 function showSlide(slide) {
+  if (!allowSlideChange) return;
+
   clearInterval(intervalID);
 
-  if (slide === 0) {
-    slides[1].classList.remove("slide--left");
-    slides[1].classList.add("slide--right");
-  }
-  if (slide === 2) {
-    slides[1].classList.remove("slide--right");
-    slides[1].classList.add("slide--left");
-  }
-
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].classList.remove("slide--fade-in");
-    dots[i].classList.remove("slider__dot--active");
-  }
-  slides[slide].classList.add("slide--fade-in");
+  setTimeout(() => slides[slide].classList.add("slide--fade-in"), 250);
   dots[slide].classList.add("slider__dot--active");
 
   interval();
   resetSlideChangeFlag();
+}
+
+function animateLeft(previous, current) {
+  clearAnimations();
+
+  slides[previous].classList.add("slide--left");
+  slides[current].classList.add("slide--right");
+}
+
+function animateRight(previous, current) {
+  clearAnimations();
+
+  slides[previous].classList.add("slide--right");
+  slides[current].classList.add("slide--left");
+}
+
+function clearAnimations() {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("slide--left");
+    slides[i].classList.remove("slide--right");
+    slides[i].classList.remove("slide--fade-in");
+    dots[i].classList.remove("slider__dot--active");
+  }
 }

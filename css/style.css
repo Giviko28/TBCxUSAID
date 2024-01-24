@@ -222,7 +222,7 @@ section, footer {
     align-items: center;
     gap: 7.75rem;
     position:absolute;
-    transition: all 1s;
+    transition: all 0.8s;
     opacity: 0;
 }
 .slide--fade-in {
@@ -254,15 +254,20 @@ section, footer {
     color: white;
     margin: 1.5rem 0 5rem 0;
 }
+.slide--single-image {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .slider__dot{
     width: 6px;
     height: 6px;
-    background-color: white;
+    background-color: #e8e6e6;
     border-radius: 1rem;
     cursor: pointer;
 }
 .slider__dot--active {
-    background-color: red;
+    background-color: #FFFFFF;
 }
 .accordion-container {
     background-color: var(--third-color);
