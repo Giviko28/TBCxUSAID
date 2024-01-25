@@ -1,6 +1,10 @@
 # TBC x USAID Technical Task
-What your viewing here is a fully functional "replica" of https://www.tbcacademy.ge/usaid
 
+<img alt="USAID Logo" height="75" src="https://static.wixstatic.com/media/93e8a3_a356bb7d201f4f47870683655e9e4120~mv2.png/v1/fill/w_271,h_81,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Asset%204_2x_edited.png"/>
+<img alt="TBC Logo" height="75" src="https://upload.wikimedia.org/wikipedia/en/e/e2/TBC_Bank_logo.svg" width="200"/>
+
+
+What your viewing here is a fully functional "replica" of https://www.tbcacademy.ge/usaid
 ## Project Structure
 
 The structure is as simple as it gets.
