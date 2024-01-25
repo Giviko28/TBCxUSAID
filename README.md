@@ -48,7 +48,7 @@ cd tbc
  - Double-click on the file or open it with your preferred browser. 
 
 
-### Usage / Disclaimer
+## Usage / Disclaimer
 
 This website is available in two sizes - Desktop and Mobile-SM.
 
