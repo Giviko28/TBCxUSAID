@@ -1,12 +1,15 @@
 .menu-button {
-    position: relative;
     width: 32px;
     height: 28px;
-    background: transparent;
-    display: none;
+    position: fixed;
+    z-index: 555;
+    right: 16px;
+    top: 20px;
+    display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: 0.3s;
 }
 .menu_wrapper {
     align-items: center;

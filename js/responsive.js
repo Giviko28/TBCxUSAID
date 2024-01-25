@@ -1,38 +1,27 @@
 const header = document.querySelector("header");
-const menu = document.querySelector(".menu-button");
-const menuContainer = document.querySelector(".menu-overlay");
-const menuContainerContent = document.querySelector(".menu");
+const menuButton = document.querySelector(".menu-button");
+const menuOverlay = document.querySelector(".menu-overlay");
+const menu = document.querySelector(".menu");
+// Individual Lines of the MENU BUTTON (PARENT/TOP/MIDDLE/BOTTOM)
 const spanParent = document.querySelector(".menu-button__span-parent");
 const menuTop = document.querySelector(".menu__top");
 const menuMiddle = document.querySelector(".menu__full");
 const menuBottom = document.querySelector(".menu__bottom");
+////////////////////////////////
 let lastKnownScrollPosition = 0;
-let isClicked = false;
+let isOpen = false;
 
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-};
-menu.addEventListener("click", () => {
-  toggleMenu();
-});
-window.addEventListener("scroll", updateHeaderClass);
+window.onbeforeunload = () => window.scrollTo(0, 0);
+window.addEventListener("scroll", updateHeaderBackground);
 window.addEventListener("scroll", updateHeaderVisibility);
-menuContainer.addEventListener("click", toggleMenu);
-menuContainerContent.addEventListener("click", (event) =>
-  event.stopPropagation(),
-);
+menuButton.addEventListener("click", toggleMenu);
+menuOverlay.addEventListener("click", toggleMenu);
+menu.addEventListener("click", (event) => event.stopPropagation());
 
-function updateHeaderClass() {
-  const header = document.querySelector("header");
-  const scrollDistance = window.scrollY;
-
-  const threshold = 1;
-
-  if (scrollDistance > threshold) {
-    header.classList.add("header--transparent");
-  } else {
-    header.classList.remove("header--transparent");
-  }
+function updateHeaderBackground() {
+  window.scrollY > 0
+    ? header.classList.add("header--transparent")
+    : header.classList.remove("header--transparent");
 }
 
 function updateHeaderVisibility() {
@@ -46,12 +35,12 @@ function updateHeaderVisibility() {
 
 function hideHeader() {
   header.classList.add("header--hidden");
-  menu.classList.add("header--hidden");
+  menuButton.classList.add("header--hidden");
 }
 
 function showHeader() {
   header.classList.remove("header--hidden");
-  menu.classList.remove("header--hidden");
+  menuButton.classList.remove("header--hidden");
 }
 
 function toggleMenu() {
@@ -59,27 +48,18 @@ function toggleMenu() {
   menuTop.classList.toggle("menu__top--animated");
   menuMiddle.classList.toggle("menu__middle--animated");
   menuBottom.classList.toggle("menu__bottom--animated");
-  menuContainer.classList.toggle("menu-container-open");
-  menuContainerContent.classList.toggle("menu-container-content-open");
 
-  isClicked = !isClicked;
-  if (isClicked) {
+  menuOverlay.classList.toggle("menu-overlay--open");
+  menu.classList.toggle("menu--open");
+
+  isOpen = !isOpen;
+  if (isOpen) {
     document.body.style.overflow = "hidden";
-    menuContainer.style.overflow = "hidden";
+    menuOverlay.style.overflow = "hidden";
   }
-  if (!isClicked) {
+  if (!isOpen) {
     window.scrollY !== 0 ? hideHeader() : "";
     document.body.style.overflow = "";
-    menuContainer.style.overflow = "";
+    menuOverlay.style.overflow = "";
   }
 }
-// Determines if the loaded user is a mobile or desktop
-// let viewportMeta = document.createElement("meta");
-// viewportMeta.name = "viewport";
-// window.innerWidth > 980
-//   ? (viewportMeta.content = "width=device-width, initial-scale=1")
-//   : (viewportMeta.content = "width=320, user-scalable=yes");
-//
-// console.log(viewportMeta);
-// document.head.appendChild(viewportMeta);
-/////////////

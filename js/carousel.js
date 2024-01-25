@@ -1,11 +1,8 @@
 let slide = 0;
 let previousSlide = 0;
-let intervalID;
-let isDragging = false;
 let allowSlideChange = true;
-let freezeOnHover = false;
-const dragInterval = 1000;
-let startX, startY, offsetX, offsetY;
+let intervalID, isDragging, freezeOnHover, startX, startY, offsetX, offsetY;
+const dragInterval = 1500;
 const slides = document.querySelectorAll(".slide");
 const slidesOverlay = document.querySelector(".slides-overlay");
 const dotsContainer = document.querySelector(".slider__dots");
@@ -13,39 +10,34 @@ const dots = document.querySelectorAll(".slider__dot");
 const prevButton = document.querySelector(".slides__prev-button");
 const nextButton = document.querySelector(".slides__next-button");
 
-prevButton.addEventListener("click", () => {
-  handleDecrement();
-});
-nextButton.addEventListener("click", () => {
-  handleIncrement();
-});
+prevButton.addEventListener("click", handleDecrement);
+nextButton.addEventListener("click", handleIncrement);
+
 dots.forEach((dot, index) =>
   dot.addEventListener("click", () => {
-    if (!allowSlideChange) return;
+    if (!allowSlideChange || slide === index) return;
     previousSlide = slide;
     slide = index;
-    if (previousSlide === slide) return;
+
     previousSlide > slide
       ? animateRight(previousSlide, slide)
       : animateLeft(previousSlide, slide);
-    showSlide(index);
+    showSlide(slide);
   }),
 );
 
 // Drag to slide functions for mobile
-slides.forEach((slide) => {
-  slide.addEventListener("touchstart", startDrag);
-});
+slides.forEach((slide) => slide.addEventListener("touchstart", startDrag));
 document.body.addEventListener("touchmove", drag);
 document.body.addEventListener("touchend", stopDrag);
-// END
+//////////////////////////////// END
 
 // Freeze slider on hover
 slidesOverlay.addEventListener("mouseenter", () => (freezeOnHover = true));
 slidesOverlay.addEventListener("mouseleave", () => (freezeOnHover = false));
 dotsContainer.addEventListener("mouseenter", () => (freezeOnHover = true));
 dotsContainer.addEventListener("mouseleave", () => (freezeOnHover = false));
-// END
+/////////////////////////////// END
 
 interval();
 
@@ -86,7 +78,7 @@ function interval() {
   intervalID = setInterval(() => {
     if (freezeOnHover) return;
     handleIncrement();
-  }, 2500);
+  }, 4000);
 }
 
 function handleIncrement() {
@@ -118,7 +110,10 @@ function showSlide(slide) {
 
   clearInterval(intervalID);
 
-  setTimeout(() => slides[slide].classList.add("slide--fade-in"), 250);
+  setTimeout(
+    () => slides[slide].classList.add("slide--fade-in"),
+    window.innerWidth > 1600 ? 100 : 500,
+  );
   dots[slide].classList.add("slider__dot--active");
 
   interval();

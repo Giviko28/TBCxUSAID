@@ -10,7 +10,7 @@
     width: 250px;
     height: 45px;
 }
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 320px) {
     .usaid {
         width: 219px;
         height: 66px;
