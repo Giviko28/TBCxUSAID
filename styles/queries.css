@@ -85,6 +85,9 @@
     .hero__wrapper {
         line-height: 0.75em;
     }
+    .hero__heading {
+        margin-top: 1rem;
+    }
     .hero__title {
         font-size: 24px;
     }
@@ -172,6 +175,9 @@
         top: unset;
         left: unset;
         transform: unset;
+    }
+    .accordion {
+        padding: 32px 0;
     }
     .accordion-container {
         padding: 0;

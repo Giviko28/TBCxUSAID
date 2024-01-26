@@ -40,7 +40,6 @@ section, footer {
 }
 .header {
     background-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     padding: 1.375rem;
     display: flex;
     justify-content: center;
@@ -245,7 +244,7 @@ section, footer {
     gap: 0.75rem;
     justify-content: center;
     color: white;
-    margin: 1.5rem 0 5rem 0;
+    margin: 1rem 0 5rem 0;
 }
 .slider__dot{
     width: 6px;
@@ -285,11 +284,8 @@ section, footer {
 .accordion-container__paragraph-SM {
     display: none;
 }
-.accordion-wrapper {
-    margin: 1rem 0;
-}
 .accordion {
-    padding: 32px 0;
+    padding:44px 0 32px;
     border-bottom: 1px solid #FFFFFF30;
     cursor:pointer;
     max-height: 6rem;

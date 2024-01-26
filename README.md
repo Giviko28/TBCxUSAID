@@ -29,7 +29,6 @@ When it comes to technologies and libraries, I went for a simple approach (every
 - **CSS:** 
 - **HTML:**
 
-
 ## Getting Started
 To get my project running, follow these procedures:
 
