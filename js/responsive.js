@@ -17,6 +17,8 @@ window.addEventListener("scroll", updateHeaderVisibility);
 menuButton.addEventListener("click", toggleMenu);
 menuOverlay.addEventListener("click", toggleMenu);
 menu.addEventListener("click", (event) => event.stopPropagation());
+window.addEventListener("load", adjustViewport);
+window.addEventListener("resize", adjustViewport);
 
 function updateHeaderBackground() {
   window.scrollY > 0
@@ -82,6 +84,3 @@ function adjustViewport() {
     );
   }
 }
-
-window.addEventListener("load", adjustViewport);
-window.addEventListener("resize", adjustViewport);

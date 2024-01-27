@@ -2,7 +2,7 @@ let slide = 0;
 let previousSlide = 0;
 let allowSlideChange = true;
 let intervalID, isDragging, freezeOnHover, startX, startY, offsetX, offsetY;
-const dragInterval = 1500;
+const dragInterval = 2200;
 const slides = document.querySelectorAll(".slide");
 const slidesOverlay = document.querySelector(".slides-overlay");
 const dotsContainer = document.querySelector(".slider__dots");
@@ -112,7 +112,7 @@ function showSlide(slide) {
 
   setTimeout(
     () => slides[slide].classList.add("slide--fade-in"),
-    window.innerWidth > 1600 ? 100 : 500,
+    window.innerWidth > 1600 ? 100 : 600,
   );
   dots[slide].classList.add("slider__dot--active");
 
