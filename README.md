@@ -53,10 +53,5 @@ This website is available in two sizes - Desktop and Mobile-SM.
 
 The width of the mobile version is fixed to 320px (because that's the way TBC has its website setup).
 
-The only issue that can arise is the usage of a laptop. Because I'm using this meta tag: 
-```
-<meta name="viewport" content="width=320, user-scalable=yes">
-```
-Devices with widths below 1600px will display the mobile version.
+Anything below 1024px will be displayed as 320px
 
-Although I could avoid this by conditionally applying meta tags, I've decided to play it safe by straight-up copying this meta tag from the original website. (What they do is conditionally apply meta tags, or that's what I think they do xD)
