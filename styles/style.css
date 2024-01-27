@@ -233,7 +233,7 @@ section, footer {
     align-items: center;
     gap: 7.75rem;
     position:absolute;
-    transition: all 1s;
+    transition: all 1.15s;
     opacity: 0;
 }
 .slide--fade-in {

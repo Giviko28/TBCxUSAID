@@ -2,7 +2,7 @@ let slide = 0;
 let previousSlide = 0;
 let allowSlideChange = true;
 let intervalID, isDragging, freezeOnHover, startX, startY, offsetX, offsetY;
-const dragInterval = 2200;
+let dragInterval = 2200;
 const slides = document.querySelectorAll(".slide");
 const slidesOverlay = document.querySelector(".slides-overlay");
 const dotsContainer = document.querySelector(".slider__dots");
@@ -12,6 +12,9 @@ const nextButton = document.querySelector(".slides__next-button");
 
 prevButton.addEventListener("click", handleDecrement);
 nextButton.addEventListener("click", handleIncrement);
+// The time it takes before your allowed to change slides differs from mobile to desktop
+window.addEventListener("load", adjustDragInterval);
+window.addEventListener("resize", adjustDragInterval);
 
 dots.forEach((dot, index) =>
   dot.addEventListener("click", () => {
@@ -141,4 +144,8 @@ function clearAnimations() {
     slides[i].classList.remove("slide--fade-in");
     dots[i].classList.remove("slider__dot--active");
   }
+}
+
+function adjustDragInterval() {
+  dragInterval = window.innerWidth > 1024 ? 1200 : 2200;
 }
