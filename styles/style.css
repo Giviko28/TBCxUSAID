@@ -8,7 +8,7 @@
 }
 body {
     position: relative;
-    min-width: 980px;
+    min-width: 1000px;
 }
 .active {
     color: var(--blue) !important;

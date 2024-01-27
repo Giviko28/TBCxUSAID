@@ -63,3 +63,25 @@ function toggleMenu() {
     menuOverlay.style.overflow = "";
   }
 }
+
+function adjustViewport() {
+  let viewportMeta = document.getElementById("viewport-meta");
+  let viewportWidth = window.innerWidth;
+  let targetValue = "width=320, maximum-scale=3.2, user-scalable=yes";
+  let isMobile = viewportMeta.getAttribute("content") === targetValue;
+
+  if (viewportWidth <= 1024 && !isMobile) {
+    viewportMeta.setAttribute(
+      "content",
+      "width=320, maximum-scale=3.2, user-scalable=yes",
+    );
+  } else if (viewportWidth >= 1000) {
+    viewportMeta.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1.0",
+    );
+  }
+}
+
+window.addEventListener("load", adjustViewport);
+window.addEventListener("resize", adjustViewport);

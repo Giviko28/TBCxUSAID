@@ -27,6 +27,9 @@
         max-width: 320px;
         min-width: unset;
     }
+    section {
+        min-width: 320px;
+    }
     .menu-button {
         display: flex;
     }
@@ -98,7 +101,7 @@
         margin: 2rem 0 3rem;
     }
     .info__heading {
-        font-size: 16px;
+        font-size: 16px !important;
     }
     .info__anchor {
         font-size: 16px;
