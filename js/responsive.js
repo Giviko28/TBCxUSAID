@@ -27,7 +27,7 @@ function updateHeaderBackground() {
 }
 
 function updateHeaderVisibility() {
-  if (window.innerWidth > 1600) return;
+  if (window.innerWidth > 1024) return;
   const currentScrollPosition = window.scrollY;
 
   currentScrollPosition > lastKnownScrollPosition ? hideHeader() : showHeader();
